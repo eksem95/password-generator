@@ -17,21 +17,8 @@ function generatePassword(){
   console.log(includeNumbers);
   var includeSpecial = confirm("Would you like to include special characters?");
   console.log(includeSpecial);  
-  var passLength = prompt("The length of your password must be between 8 and 128 characters, enter password length:");
-  if(passLength==null){
-    return;
-  }
-  while(isNaN(passLength)) {
-    alert("not a valid length");
-    passLength = prompt("The length of your password must be between 8 and 128 characters, enter password length:");   
-  }
- 
-  while(passLength < 8 || passLength > 128){
-    alert("Not a valid length");
-    passLength = prompt("The length of your password must be between 8 and 128 characters, enter password length:");   
-  }
-  console.log(passLength); 
-  
+    
+  //push selected char types into chartypes array
   characterTypes = []; 
   console.log(characterTypes);
   if(includeLowercase){
@@ -53,6 +40,26 @@ function generatePassword(){
   }
   console.log(characterTypes);
 
+ if(characterTypes.length==0){
+    alert("You must choose at least one type of character");
+    return;
+  }
+  
+  var passLength = prompt("The length of your password must be between 8 and 128 characters, enter password length:");
+  if(passLength==null){
+    alert("You must choose a length for you password");
+    return;
+  }
+  while(isNaN(passLength)) {
+    alert("not a valid length");
+    passLength = prompt("The length of your password must be between 8 and 128 characters, enter password length:");   
+  }
+ 
+  while(passLength < 8 || passLength > 128){
+    alert("Not a valid length");
+    passLength = prompt("The length of your password must be between 8 and 128 characters, enter password length:");   
+  }
+  console.log(passLength); 
 
   for (i=0; i<passLength; i++) {
     var type = Math.floor(Math.random() * characterTypes.length);
