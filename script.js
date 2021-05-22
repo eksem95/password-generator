@@ -18,12 +18,22 @@ function generatePassword(){
   var includeSpecial = confirm("Would you like to include special characters?");
   console.log(includeSpecial);  
   var passLength = prompt("The length of your password must be between 8 and 128 characters, enter password length:");
-  while(passLength.value < 8 || passLength.value > 128){
+  if(passLength==null){
+    return;
+  }
+  while(isNaN(passLength)) {
+    alert("not a valid length");
+    passLength = prompt("The length of your password must be between 8 and 128 characters, enter password length:");   
+  }
+ 
+  while(passLength < 8 || passLength > 128){
     alert("Not a valid length");
     passLength = prompt("The length of your password must be between 8 and 128 characters, enter password length:");   
   }
   console.log(passLength); 
-
+  
+  characterTypes = []; 
+  console.log(characterTypes);
   if(includeLowercase){
     characterTypes.push(lowercase);
   }
